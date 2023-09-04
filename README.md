@@ -34,9 +34,10 @@ To get started with this project, follow these steps:
 1. Clone the repository to your local machine
 2. Set up your Python environment and install the required libraries by running 'pip install -r requirements.txt' in your terminal.
 3. Open and run the 'exoplanet-exploration-using-ml.ipynb' file located in the 'models' folder.
-4. Launch the website:
-  a. Make sure the pickle file is saved in the 'models' folder after running the 'exoplanet-exploration-using-ml.ipynb' file.
-  b. Open your terminal and execute the following command "python manage.py runserver"
+
+4. To launch the website:
+5. Make sure the pickle file is saved in the 'models' folder after running the 'exoplanet-exploration-using-ml.ipynb' file.
+6. Open your terminal and execute the following command "python manage.py runserver"
 
 ## Contributing
 
