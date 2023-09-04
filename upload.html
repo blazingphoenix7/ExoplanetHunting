@@ -1,0 +1,240 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EXOPLANET HUNTING</title>
+    <meta name="theme-color" content="#ffffff">
+    <link href="{% static 'assets/css/theme.css' %}" rel="stylesheet" />
+    <link href="{% static 'https://fonts.googleapis.com/css?family=Roboto&display=swap' %}" rel="stylesheet">
+    <style>
+      .center{
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <main class="main" id="top">
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 d-block" data-navbar-on-scroll="data-navbar-on-scroll">
+        <div class="container"><a class="navbar-brand d-inline-flex" href="/home"><span class="text-light fs-2 fw-bold ms-2"><h2>EXOPLANET HUNTING</h2></span></a>
+          <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item px-2"><a class="nav-link fw-bold " aria-current="page" href="#collections">EXOPLANETS</a></li>
+              <li class="nav-item px-2"><a class="nav-link fw-bold active" href="/upload">PREDICT</a></li>  
+            </ul>
+            <div class="d-flex">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item px-2"><a class="nav-link fw-bold" href="#contact">ABOUT ME</a></li>  
+              </ul>              
+            </div>
+          </div>
+        </div>
+      </nav>
+      
+      
+      <section id="testimonial">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-7 mx-auto text-center my-5">
+              <p class="fs-3 fs-lg-5 lh-sm mb-0 text-uppercase">EXOPLANET PREDICTION</p>
+            </div>
+            <div class="center">
+              <p>Please upload a .csv file containing the flux intensity values of the observed star(s).</p>
+              <p>Upload your file here:</p>
+            <div class="center">
+              <form method="post" enctype="multipart/form-data" action="predictExoplanet">
+                {% csrf_token %}
+                <div>
+                  <h5 class="">UPLOAD AN EXCELL SHEET FILE
+                    <input name="filePath" type="file">
+                    <input type="submit" value="Predict the presence of exoplanets"> 
+                    </h5>
+                </div>
+                  {% if show %}
+                  <div><br>
+                  <h3 class="" >Exoplanet Prediction:</h3>
+                  </div>
+                  <div>
+                    <p>
+                      {% for i in exoplanet_list %}
+                        <h6 class="text-primary">{{ i }}</h6>
+                      {% endfor %}
+                    </p>
+                  </div>
+                  {% endif %}
+              </form>
+            </div>
+          </div>
+          
+        </div>
+        <!-- end of .container-->
+
+      </section>
+      <!-- <section> close ============================-->
+      <!-- ============================================-->
+
+      <section class="py-0 pb-6" id="collections">
+        <div class="container">
+          <div class="row h-100">
+            <div class="col-lg-7 mt-7">
+              <h5 class="fs-3 fs-lg-5 lh-sm mb-0 text-uppercase"></h5>
+            </div>
+            <div class="col-12">
+              <nav>
+                <div class="nav nav-tabs watch-tabs mb-4 justify-content-end" id="nav-tab" role="tablist">
+                  <button class="nav-link active" id="nav-latest-tab" data-bs-toggle="tab" data-bs-target="#nav-latest" type="button" role="tab" aria-controls="nav-latest" aria-selected="true">Discovered Exoplanets </button>
+                </div>
+              </nav>
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-latest" role="tabpanel" aria-labelledby="nav-latest-tab">
+                  <div class="carousel slide" id="carouselLatest" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active" data-bs-interval="10000">
+                        <div class="row h-100 align-items-center">
+                          <div class="col-sm-6 col-md-4 mb-3 mb-md-0">
+                            <div class="card bg-black text-white p-6 pb-8"><img class="card-img" src="{% static 'assets/img/gallery/watch-1.png' %}" alt="..." />
+                              <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse align-items-center">
+                                <h6 class="text-primary">4 Light Years Away</h6>
+                                <h4 class="text-light">Proxima Centauri b</h4>
+                              </div><a class="stretched-link" href="#"></a>
+                            </div>
+                          </div>
+                          <div class="col-sm-6 col-md-4 mb-3 mb-md-0">
+                            <div class="card bg-black text-white p-6 pb-8"><img class="card-img" src="{% static 'assets/img/gallery/watch-2.png' %}" alt="..." />
+                              <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse align-items-center">
+                                <h6 class="text-primary">304 Light Years Away</h6>
+                                <h4 class="text-light">11 Comae Berenices b</h4>
+                              </div><a class="stretched-link" href="#"></a>
+                            </div>
+                          </div>
+                          <div class="col-sm-6 col-md-4 mb-3 mb-md-0">
+                            <div class="card bg-black text-white p-6 pb-8"><img class="card-img" src="{% static 'assets/img/gallery/watch-3.png' %}" alt="..." />
+                              <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse align-items-center">
+                                <h6 class="text-primary">45 Light Years Away</h6>
+                                <h4 class="text-light">47 Ursae Majoris d</h4>
+                              </div><a class="stretched-link" href="#"></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="carousel-item" data-bs-interval="5000">
+                        <div class="row h-100 align-items-center">
+                          <div class="col-sm-6 col-md-4 mb-3 mb-md-0">
+                            <div class="card bg-black text-white p-6 pb-8"><img class="card-img" src="{% static 'assets/img/gallery/watch-4.png' %}" alt="..." />
+                              <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse align-items-center">
+                                <h6 class="text-primary">32 Light Years Away</h6>
+                                <h4 class="text-light">AU Microscopii</h4>
+                              </div><a class="stretched-link" href="#"></a>
+                            </div>
+                          </div>
+                          <div class="col-sm-6 col-md-4 mb-3 mb-md-0">
+                            <div class="card bg-black text-white p-6 pb-8"><img class="card-img" src="{% static 'assets/img/gallery/watch-5.png' %}" alt="..." />
+                              <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse align-items-center">
+                                <h6 class="text-primary">69 Light Years Away</h6>
+                                <h4 class="text-light">16 Cygni B b</h4>
+                              </div><a class="stretched-link" href="#"></a>
+                            </div>
+                          </div>
+                          <div class="col-sm-6 col-md-4 mb-3 mb-md-0">
+                            <div class="card bg-black text-white p-6 pb-8"><img class="card-img" src="{% static 'assets/img/gallery/watch-6.png' %}" alt="..." />
+                              <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse align-items-center">
+                                <h6 class="text-primary">89 Light Years Away</h6>
+                                <h4 class="text-light">BD-11 4672 c</h4>
+                              </div><a class="stretched-link" href="#"></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="row">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselLatest" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselLatest" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next </span></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ============================================-->
+      <!-- <section> begin ============================-->
+        <section class="py-0 pt-7" id="contact">
+
+          <div class="container">
+            
+            <div class="border-bottom border-700"></div>
+            <div class="row flex-center my-3">
+              <div class="col-md-6 order-1 order-md-0">
+                <p class="my-2 text-800 text-center text-md-start"> ABOUT ME
+                </p>
+              </div>
+              <div class="col-md-6">
+                <div class="text-center text-md-end"><a href="#!"><span class="me-4" data-feather="facebook"></span></a><a href="#!"> <span class="me-4" data-feather="instagram"></span></a><a href="#!"> <span class="me-4" data-feather="youtube"></span></a><a href="#!"> <span class="me-4" data-feather="twitter"></span></a></div>
+            </div>
+          </div>
+          <div class="row">
+
+            <div class="col-6 col-sm-4 col-xl-3 mb-3">
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <li class="lh-lg"><a class="text-800 text-decoration-none text-uppercase fw-bold" href="#!">Aaryan Mehta</a></li>
+                <li class="lh-lg"><a class="text-800 text-decoration-none text-uppercase fw-bold" href="#!">CS grad student @NYU </a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-sm-4 col-xl-3 mb-3">
+              <h5 class="my-2 text-800 text-center text-md-start">EMAIL ADDRESS</h5>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <li class="lh-lg"><a class="text-800 text-decoration-none fw-bold" href="#!">adm8315@nyu.edu</a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-sm-4 col-xl-3 mb-3">
+              <h5 class="my-2 text-800 text-center text-md-start">CONTACT ME</h5>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <li class="lh-lg"><a class="text-800 text-decoration-none text-uppercase fw-bold" href="#!">+1 (917) 914-1795</a></li>
+              </ul>
+            </div>
+            
+          </div>
+        </div>
+        <!-- end of .container-->
+  
+        </section>
+      <!-- <section> close ============================-->
+      <!-- ============================================-->
+
+
+    </main>
+    <!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+
+
+
+
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    <script src="{% static 'vendors/@popperjs/popper.min.js' %}"></script>
+    <script src="{% static 'vendors/bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendors/is/is.min.js' %}"></script>
+    <script src="{% static 'https://polyfill.io/v3/polyfill.min.js?features=window.scroll' %}"></script>
+    <script src="{% static 'vendors/feather-icons/feather.min.js' %}"></script>
+    <script>
+      feather.replace();
+    </script>
+    <script src="{% static 'assets/js/theme.js' %}"></script>
+
+    <link href="{% static 'https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;700&amp;display=swap' %}" rel="stylesheet">
+  </body>
+
+</html>
